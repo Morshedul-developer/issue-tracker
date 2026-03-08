@@ -1,17 +1,31 @@
 const issueContainer = document.getElementById("issue-container");
+const btnAll = document.getElementById("btn-all");
+const btnOpen = document.getElementById("btn-open");
+const btnClosed = document.getElementById("btn-closed");
+
+const showLabels = (arr) => {
+  const newElements = arr.map(
+    (
+      item,
+    ) => `<div class="badge badge-soft badge-warning border border-warning rounded-2xl text-[12px]">${item.toUpperCase()}
+                  </div>`,
+  );
+  return newElements.join(" ");
+};
 
 const loadIssues = async () => {
-    const res = await fetch("https://phi-lab-server.vercel.app/api/v1/lab/issues");
-    const issues = await res.json();
-    displayIssues(issues.data);
-}
-// #A855F7
-// #00A96E
+  const res = await fetch(
+    "https://phi-lab-server.vercel.app/api/v1/lab/issues",
+  );
+  const issues = await res.json();
+  displayIssues(issues.data);
+};
+
 const displayIssues = (issues) => {
-    issues.forEach(issue => {
-        const div = document.createElement('div');
-        div.className = `space-y-3 p-4 rounded-lg shadow-md border-t-3 border-[${issue.status == "open" ? "#00A96E" : "#A855F7"}]`;
-        div.innerHTML = `
+  issues.forEach((issue) => {
+    const div = document.createElement("div");
+    div.className = `space-y-3 p-4 rounded-lg shadow-md border-t-3 border-[${issue.status == "open" ? "#00A96E" : "#A855F7"}]`;
+    div.innerHTML = `
               <div class="space-y-3">
                 <div class="flex justify-between items-center">
                   <img src="./assets/${issue.status == "open" ? "Open-Status.png" : "Closed- Status .png"}" alt="" />
@@ -26,12 +40,7 @@ const displayIssues = (issues) => {
                   ${issue.description}
                 </p>
                 <div class="flex gap-1">
-                  <div class="badge badge-soft badge-error border border-error rounded-2xl text-[12px]">
-                    <i class="fa-solid fa-bug"></i>BUG
-                  </div>
-                  <div class="badge badge-soft badge-warning border border-warning rounded-2xl text-[12px]">
-                    <i class="fa-regular fa-life-ring"></i>HELP WANTED
-                  </div>
+                ${showLabels(issue.labels)}
                 </div>
               </div>
               <hr class="-mx-4 border-gray-200" />
@@ -41,13 +50,17 @@ const displayIssues = (issues) => {
                 <span class="text-[12px] text-gray-500">${new Date(issue.createdAt).toLocaleDateString()}</span>
                 </div>
                 <div class="flex justify-between">
-                <p class="text-[12px] text-gray-500">Assignee: ${issue.assignee}</p>
+                <p class="text-[12px] text-gray-500">Assignee: ${issue.assignee ? issue.assignee : "N/A"}</p>
                 <span class="text-[12px] text-gray-500">Updated: ${new Date(issue.updatedAt).toLocaleDateString()}</span>
                 </div>
               </div>
         `;
-        issueContainer.append(div);
-    });
+    issueContainer.append(div);
+  });
+};
+
+const showCategories = () => {
+
 }
 
 loadIssues();
