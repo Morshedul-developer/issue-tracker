@@ -4,6 +4,8 @@ const tabsContainer = document.getElementById("tabs-container");
 const btnAll = document.getElementById("btn-all");
 const btnOpen = document.getElementById("btn-open");
 const btnClosed = document.getElementById("btn-closed");
+const totalIssues = document.getElementById("total");
+const spinner = document.getElementById("spinner");
 
 const showLabels = (arr) => {
   const newElements = arr.map(
@@ -17,18 +19,35 @@ const showLabels = (arr) => {
 
 const removeActiveStatus = () => {
   const allButtons = document.querySelectorAll(".btn-tab");
-  allButtons.forEach((btn) => btn.classList.remove("btn-primary"));
+  allButtons.forEach((btn) => {
+    btn.classList.remove("btn-primary");
+  });
 };
 
+const totalCounts = () => {
+  totalIssues.innerText = issueContainer.children.length;
+};
+
+const showSpinner = () => {
+  spinner.classList.remove("hidden");
+  spinner.classList.add("flex");
+};
+const hideSpinner = () => {
+  spinner.classList.add("hidden");
+  spinner.classList.remove("flex");
+};
+
+// load issues
 const loadAllIssues = async () => {
+  showSpinner();
   const res = await fetch(
     "https://phi-lab-server.vercel.app/api/v1/lab/issues",
   );
   const issues = await res.json();
   displayIssues(issues.data);
 };
-
 const loadOpenIssues = async () => {
+  showSpinner();
   const res = await fetch(
     "https://phi-lab-server.vercel.app/api/v1/lab/issues",
   );
@@ -38,6 +57,7 @@ const loadOpenIssues = async () => {
   displayIssues(openIssues);
 };
 const loadClosedIssues = async () => {
+  showSpinner();
   const res = await fetch(
     "https://phi-lab-server.vercel.app/api/v1/lab/issues",
   );
@@ -47,6 +67,7 @@ const loadClosedIssues = async () => {
   displayIssues(closedIssues);
 };
 
+// display issues
 const displayIssues = (issues) => {
   issueContainer.innerHTML = "";
   issues.forEach((issue) => {
@@ -84,6 +105,8 @@ const displayIssues = (issues) => {
         `;
     issueContainer.append(div);
   });
+  totalCounts();
+  hideSpinner();
 };
 
 const showCategory = (status) => {
