@@ -13,7 +13,7 @@ const showLabels = (arr) => {
   const newElements = arr.map(
     (
       item,
-    ) => `<div class="badge badge-soft ${item == "bug" ? "badge-error" : "badge-warning"} border border-warning rounded-2xl text-[12px]">${item == "bug" ? '<i class="fa-solid fa-bug"></i>' : '<i class="fa-regular fa-life-ring"></i>'}${item.toUpperCase()}
+    ) => `<div class="badge badge-soft ${item == "bug" ? "badge-error" : "badge-warning"} border ${item == "bug" ? "border-error" : "border-warning"} rounded-2xl text-[12px]">${item == "bug" ? '<i class="fa-solid fa-bug"></i>' : '<i class="fa-regular fa-life-ring"></i>'}${item.toUpperCase()}
                   </div>`,
   );
   return newElements.join(" ");
