@@ -35,6 +35,7 @@ const removeActiveStatus = () => {
       "transition-all",
       "duration-200",
     );
+    btn.classList.add("btn-outline", "hover:bg-neutral", "hover:text-white");
   });
 };
 
@@ -196,6 +197,11 @@ const showCategory = (status) => {
       "transition-all",
       "duration-200",
     );
+    btnAll.classList.remove(
+      "btn-outline",
+      "hover:bg-neutral",
+      "hover:text-white",
+    );
     loadAllIssues();
   } else if (status == "open") {
     removeActiveStatus();
@@ -211,6 +217,11 @@ const showCategory = (status) => {
       "transition-all",
       "duration-200",
     );
+    btnOpen.classList.remove(
+      "btn-outline",
+      "hover:bg-neutral",
+      "hover:text-white",
+    );
     loadOpenIssues();
   } else if (status == "closed") {
     removeActiveStatus();
@@ -225,6 +236,11 @@ const showCategory = (status) => {
       "hover:shadow-lg",
       "transition-all",
       "duration-200",
+    );
+    btnClosed.classList.remove(
+      "btn-outline",
+      "hover:bg-neutral",
+      "hover:text-white",
     );
     loadClosedIssues();
   }
