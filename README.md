@@ -7,22 +7,22 @@
 - var:<br>
   It is functioned scoped and ignores {} blocks like if, for etc.
 
-      It also can reassigned and can be redeclared.<br>
-      Ex:<br>
-      var a = 5;<br>
-      var a = 10; // This is allowed<br>
+      It also can reassigned and can be redeclared.
+      Ex:
+      var a = 5;
+      var a = 10; // This is allowed
       a = 20;     // This is allowed
 
-      It is hoisted and initialized as "undefined".<br>
-      Ex:<br>
-      console.log(b); // undefined<br>
+      It is hoisted and initialized as "undefined".
+      Ex:
+      console.log(b); // undefined
       var b = 5;
 
 - let:<br>
   It is blocked-scoped.
 
-      It also can reassigned and but cannot be redeclared.<br>
-      Ex:<br>
+      It also can reassigned and but cannot be redeclared.
+      Ex:
       let c = 5;
       c = 10;      // allowed
       let c = 20;  // Error
@@ -35,14 +35,14 @@
 - const:<br>
   It is blocked-scoped.
 
-      It cannot be reassigned and but cannot be redeclared.<br>
-      Ex:<br>
-      const e = 10;<br>
+      It cannot be reassigned and but cannot be redeclared.
+      Ex:
+      const e = 10;
       e = 20; // Error
 
       It is hoisted but not initialized. It exists in Temporal Dead Zone(TDZ).
-      Ex:<br>
-      console.log(d); // ReferenceError<br>
+      Ex:
+      console.log(d); // ReferenceError
       let d = 5;
 
 # 2️⃣ What is the spread operator (...)?
@@ -182,3 +182,8 @@ This is line two
 This is line three`;
 
   console.log(text);
+
+  Output:<br>
+  This is line one<br>
+  This is line two<br>
+  This is line three
