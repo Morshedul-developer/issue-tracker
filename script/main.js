@@ -180,7 +180,7 @@ const displayModal = (issue) => {
               </div>
               <div class="flex-1 space-y-1">
                 <p class="text-gray-500">Priority:</p>
-                <div class="badge ${issue.priority == "high" ? "badge-error" : issue.priority == "medium" ? "badge-warning" : "badge-soft text-gray-500"} rounded-2xl font-medium">
+                <div class="badge ${issue.priority == "high" ? "badge-error text-white" : issue.priority == "medium" ? "badge-warning" : "badge-soft text-gray-500"} rounded-2xl font-medium">
                   ${issue.priority.toUpperCase()}
                 </div>
               </div>
