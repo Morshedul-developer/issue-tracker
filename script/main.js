@@ -6,12 +6,14 @@ const btnOpen = document.getElementById("btn-open");
 const btnClosed = document.getElementById("btn-closed");
 const totalIssues = document.getElementById("total");
 const spinner = document.getElementById("spinner");
+const modal = document.getElementById("issue-details-modal");
+const modalContainer = document.getElementById("modal-container");
 
 const showLabels = (arr) => {
   const newElements = arr.map(
     (
       item,
-    ) => `<div class="badge badge-soft badge-warning border border-warning rounded-2xl text-[12px]">${item.toUpperCase()}
+    ) => `<div class="badge badge-soft ${item == "bug" ? "badge-error" : "badge-warning"} border border-warning rounded-2xl text-[12px]">${item.toUpperCase()}
                   </div>`,
   );
   return newElements.join(" ");
@@ -35,6 +37,13 @@ const showSpinner = () => {
 const hideSpinner = () => {
   spinner.classList.add("hidden");
   spinner.classList.remove("flex");
+};
+
+const openModal = async (id) => {
+    const res = await fetch(`https://phi-lab-server.vercel.app/api/v1/lab/issue/${id}`);
+    const data = await res.json();
+    displayModal(data.data);
+    modal.showModal();
 };
 
 // load issues
@@ -72,12 +81,13 @@ const displayIssues = (issues) => {
   issueContainer.innerHTML = "";
   issues.forEach((issue) => {
     const div = document.createElement("div");
+    div.onclick = () => openModal(issue.id);
     div.className = `space-y-3 p-4 rounded-lg shadow-md border-t-3 border-[${issue.status == "open" ? "#00A96E" : "#A855F7"}]`;
     div.innerHTML = `
               <div class="space-y-3">
                 <div class="flex justify-between items-center">
                   <img src="./assets/${issue.status == "open" ? "Open-Status.png" : "Closed- Status .png"}" alt="" />
-                  <div class="badge badge-soft badge-error rounded-2xl">
+                  <div class="badge badge-soft ${issue.priority == "high" ? "badge-error" : issue.priority == "medium" ? "badge-warning" : "badge-soft"} rounded-2xl">
                     ${issue.priority.toUpperCase()}
                   </div>
                 </div>
@@ -108,6 +118,46 @@ const displayIssues = (issues) => {
   totalCounts();
   hideSpinner();
 };
+
+const displayModal = (issue) => {
+    modalContainer.innerHTML = "";
+    modalContainer.innerHTML = `
+    <div class="space-y-2">
+              <h3 class="text-2xl font-bold">${issue.title}</h3>
+              <div class="flex gap-8">
+                <div
+                  class="badge ${issue.status == "open" ? "badge-success" : "badge-error"} font-medium rounded-2xl text-white"
+                >
+                  ${issue.status == "open" ? "Opened" : "Closed"}
+                </div>
+                <ul class="flex gap-8 text-gray-500 list-disc">
+                  <li>Opened by ${issue.author}</li>
+                  <li>${new Date(issue.createdAt).toLocaleDateString()}</li>
+                </ul>
+              </div>
+            </div>
+            <div>
+              <div class="flex gap-1">${showLabels(issue.labels)}</div>
+            </div>
+            <div>
+              <p class="text-gray-500">
+                ${issue.description}
+              </p>
+            </div>
+            <div class="flex bg-[#F8FAFC] p-4 rounded-lg">
+              <div class="flex-1 space-y-1">
+                <p class="text-gray-500">Assignee:</p>
+                <h6 class="font-semibold">${issue.assignee ? issue.assignee : "N/A"}</h6>
+              </div>
+              <div class="flex-1 space-y-1">
+                <p class="text-gray-500">Priority:</p>
+                <div class="badge ${issue.priority == "high" ? "badge-error" : issue.priority == "medium" ? "badge-warning" : "badge-soft"} rounded-2xl font-medium">
+                  ${issue.priority.toUpperCase()}
+                </div>
+              </div>
+            </div>
+    `;
+}
 
 const showCategory = (status) => {
   if (status == "all") {

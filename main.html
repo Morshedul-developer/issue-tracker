@@ -101,14 +101,13 @@
           </button>
         </div>
         <!-- spinner -->
-           <div id="spinner" class="justify-center items-center py-4 hidden">
-            <span class="loading loading-bars loading-xl"></span>
-           </div>
+        <div id="spinner" class="justify-center items-center py-4 hidden">
+          <span class="loading loading-bars loading-xl"></span>
+        </div>
         <!-- issues section -->
         <div class="card card-body bg-white shadow">
-          
-            <!-- issues des -->
-          <div class="flex justify-between mb-5">
+          <!-- issues des -->
+          <div class="flex flex-col gap-3 sm:flex-row justify-between mb-5">
             <!-- left -->
             <div class="flex justify-center items-center gap-2">
               <div
@@ -146,6 +145,24 @@
           ></div>
         </div>
       </section>
+
+      <!-- modal -->
+      <dialog
+        id="issue-details-modal"
+        class="modal modal-bottom sm:modal-middle"
+      >
+        <div class="modal-box">
+          <div id="modal-container" class="space-y-6">
+            
+          </div>
+          <div class="modal-action">
+            <form method="dialog">
+              <!-- if there is a button in form, it will close the modal -->
+              <button class="btn btn-primary">Close</button>
+            </form>
+          </div>
+        </div>
+      </dialog>
     </main>
 
     <!-- script -->
