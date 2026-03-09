@@ -1,3 +1,4 @@
+let currentStatus = "all";
 const issueContainer = document.getElementById("issue-container");
 const tabsContainer = document.getElementById("tabs-container");
 const btnAll = document.getElementById("btn-all");
@@ -41,10 +42,9 @@ const removeActiveStatus = () => {
 
 const totalCounts = () => {
   totalIssues.innerText = issueContainer.children.length;
-  if(issueContainer.children.length === 0) {
+  if (issueContainer.children.length === 0) {
     main.classList.add("h-screen");
-  }
-  else{
+  } else {
     main.classList.remove("h-screen");
   }
 };
@@ -259,4 +259,4 @@ document.getElementById("search-btn").addEventListener("click", () => {
   loadSearchIssues(searchValue);
 });
 
-showCategory("all");
+showCategory(currentStatus);
