@@ -37,7 +37,7 @@
   </head>
   <body>
     <!-- navbar -->
-    <header class="border-b border-gray-300">
+    <header class="border-b border-gray-300 sticky top-0 z-50">
       <div
         class="navbar flex-col gap-3 md:flex-row justify-between bg-base-100 w-11/12 mx-auto"
       >
@@ -63,10 +63,18 @@
                 <path d="m21 21-4.3-4.3"></path>
               </g>
             </svg>
-            <input type="search" required placeholder="Search issues..." />
+            <input
+              id="search-input"
+              type="search"
+              required
+              placeholder="Search issues..."
+            />
           </label>
-          <button class="btn btn-primary">
-            <i class="fa-solid fa-plus"></i>New Issue
+          <button
+            id="search-btn"
+            class="btn px-6 py-2.5 text-sm font-medium rounded-md min-w-[90px] text-white bg-linear-to-r from-purple-600 to-indigo-500 hover:from-purple-700 hover:to-indigo-600 shadow-md hover:shadow-lg transition-all duration-200"
+          >
+            <i class="fa-brands fa-sistrix"></i>Search
           </button>
         </div>
       </div>
@@ -81,21 +89,23 @@
           <button
             onclick="showCategory('all')"
             id="btn-all"
-            class="btn btn-tab"
+            class="btn btn-tab px-6 py-2.5 text-sm font-medium rounded-md min-w-[90px]"
           >
             All
           </button>
+
           <button
             onclick="showCategory('open')"
             id="btn-open"
-            class="btn btn-tab"
+            class="btn btn-tab px-6 py-2.5 text-sm font-medium rounded-md min-w-[90px]"
           >
             Open
           </button>
+
           <button
             onclick="showCategory('closed')"
             id="btn-closed"
-            class="btn btn-tab"
+            class="btn btn-tab px-6 py-2.5 text-sm font-medium rounded-md min-w-[90px]"
           >
             Closed
           </button>
@@ -141,7 +151,7 @@
           <!-- issue container -->
           <div
             id="issue-container"
-            class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3"
+            class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4"
           ></div>
         </div>
       </section>
@@ -152,9 +162,7 @@
         class="modal modal-bottom sm:modal-middle"
       >
         <div class="modal-box">
-          <div id="modal-container" class="space-y-6">
-            
-          </div>
+          <div id="modal-container" class="space-y-6"></div>
           <div class="modal-action">
             <form method="dialog">
               <!-- if there is a button in form, it will close the modal -->

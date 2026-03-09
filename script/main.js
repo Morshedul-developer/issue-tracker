@@ -8,6 +8,7 @@ const totalIssues = document.getElementById("total");
 const spinner = document.getElementById("spinner");
 const modal = document.getElementById("issue-details-modal");
 const modalContainer = document.getElementById("modal-container");
+const searchInput = document.getElementById("search-input");
 
 const showLabels = (arr) => {
   const newElements = arr.map(
@@ -22,7 +23,18 @@ const showLabels = (arr) => {
 const removeActiveStatus = () => {
   const allButtons = document.querySelectorAll(".btn-tab");
   allButtons.forEach((btn) => {
-    btn.classList.remove("btn-primary");
+    btn.classList.remove(
+      "bg-gradient-to-r",
+      "from-purple-600",
+      "to-indigo-500",
+      "text-white",
+      "hover:from-purple-700",
+      "hover:to-indigo-600",
+      "shadow-md",
+      "hover:shadow-lg",
+      "transition-all",
+      "duration-200",
+    );
   });
 };
 
@@ -40,10 +52,12 @@ const hideSpinner = () => {
 };
 
 const openModal = async (id) => {
-    const res = await fetch(`https://phi-lab-server.vercel.app/api/v1/lab/issue/${id}`);
-    const data = await res.json();
-    displayModal(data.data);
-    modal.showModal();
+  const res = await fetch(
+    `https://phi-lab-server.vercel.app/api/v1/lab/issue/${id}`,
+  );
+  const data = await res.json();
+  displayModal(data.data);
+  modal.showModal();
 };
 
 // load issues
@@ -74,6 +88,14 @@ const loadClosedIssues = async () => {
   const allData = issues.data;
   const closedIssues = allData.filter((issue) => issue.status !== "open");
   displayIssues(closedIssues);
+};
+const loadSearchIssues = async (searchText) => {
+  showSpinner();
+  const res = await fetch(
+    `https://phi-lab-server.vercel.app/api/v1/lab/issues/search?q=${searchText}`,
+  );
+  const data = await res.json();
+  displayIssues(data.data);
 };
 
 // display issues
@@ -120,8 +142,8 @@ const displayIssues = (issues) => {
 };
 
 const displayModal = (issue) => {
-    modalContainer.innerHTML = "";
-    modalContainer.innerHTML = `
+  modalContainer.innerHTML = "";
+  modalContainer.innerHTML = `
     <div class="space-y-2">
               <h3 class="text-2xl font-bold">${issue.title}</h3>
               <div class="flex gap-8">
@@ -157,22 +179,61 @@ const displayModal = (issue) => {
               </div>
             </div>
     `;
-}
+};
 
 const showCategory = (status) => {
   if (status == "all") {
     removeActiveStatus();
-    btnAll.classList.add("btn-primary");
+    btnAll.classList.add(
+      "bg-gradient-to-r",
+      "from-purple-600",
+      "to-indigo-500",
+      "text-white",
+      "hover:from-purple-700",
+      "hover:to-indigo-600",
+      "shadow-md",
+      "hover:shadow-lg",
+      "transition-all",
+      "duration-200",
+    );
     loadAllIssues();
   } else if (status == "open") {
     removeActiveStatus();
-    btnOpen.classList.add("btn-primary");
+    btnOpen.classList.add(
+      "bg-gradient-to-r",
+      "from-purple-600",
+      "to-indigo-500",
+      "text-white",
+      "hover:from-purple-700",
+      "hover:to-indigo-600",
+      "shadow-md",
+      "hover:shadow-lg",
+      "transition-all",
+      "duration-200",
+    );
     loadOpenIssues();
   } else if (status == "closed") {
     removeActiveStatus();
-    btnClosed.classList.add("btn-primary");
+    btnClosed.classList.add(
+      "bg-gradient-to-r",
+      "from-purple-600",
+      "to-indigo-500",
+      "text-white",
+      "hover:from-purple-700",
+      "hover:to-indigo-600",
+      "shadow-md",
+      "hover:shadow-lg",
+      "transition-all",
+      "duration-200",
+    );
     loadClosedIssues();
   }
 };
+
+document.getElementById("search-btn").addEventListener("click", () => {
+  const searchValue = searchInput.value;
+  removeActiveStatus();
+  loadSearchIssues(searchValue);
+});
 
 showCategory(currentStatus);
