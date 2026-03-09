@@ -1,4 +1,3 @@
-const currentStatus = "all";
 const issueContainer = document.getElementById("issue-container");
 const tabsContainer = document.getElementById("tabs-container");
 const btnAll = document.getElementById("btn-all");
@@ -251,6 +250,7 @@ const showCategory = (status) => {
     );
     loadClosedIssues();
   }
+  totalCounts();
 };
 
 document.getElementById("search-btn").addEventListener("click", () => {
@@ -259,4 +259,4 @@ document.getElementById("search-btn").addEventListener("click", () => {
   loadSearchIssues(searchValue);
 });
 
-showCategory(currentStatus);
+showCategory("all");
