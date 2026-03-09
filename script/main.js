@@ -14,7 +14,7 @@ const showLabels = (arr) => {
   const newElements = arr.map(
     (
       item,
-    ) => `<div class="badge badge-soft ${item == "bug" ? "badge-error" : "badge-warning"} border ${item == "bug" ? "border-error" : "border-warning"} rounded-2xl text-[12px]">${item == "bug" ? '<i class="fa-solid fa-bug"></i>' : '<i class="fa-regular fa-life-ring"></i>'}${item.toUpperCase()}
+    ) => `<div class="badge gap-1 px-1.5 badge-soft ${item == "bug" ? "badge-error" : "badge-warning"} border ${item == "bug" ? "border-error" : "border-warning"} rounded-2xl text-[9.5px]">${item == "bug" ? '<i class="fa-solid fa-bug text-[10px]"></i>' : '<i class="fa-regular fa-life-ring text-[10px]"></i>'}${item.toUpperCase()}
                   </div>`,
   );
   return newElements.join(" ");
@@ -105,16 +105,16 @@ const displayIssues = (issues) => {
   issues.forEach((issue) => {
     const div = document.createElement("div");
     div.onclick = () => openModal(issue.id);
-    div.className = `space-y-3 p-4 rounded-lg shadow-md border-t-3 border-[${issue.status == "open" ? "#00A96E" : "#A855F7"}]`;
+    div.className = `space-y-3 p-3 rounded-lg shadow-md border-t-3 border-[${issue.status == "open" ? "#00A96E" : "#A855F7"}]`;
     div.innerHTML = `
               <div class="space-y-3">
                 <div class="flex justify-between items-center">
                   <img src="./assets/${issue.status == "open" ? "Open-Status.png" : "Closed- Status .png"}" alt="" />
-                  <div class="badge badge-soft ${issue.priority == "high" ? "badge-error" : issue.priority == "medium" ? "badge-warning" : "badge-soft"} rounded-2xl">
+                  <div class="badge badge-soft ${issue.priority == "high" ? "badge-error" : issue.priority == "medium" ? "badge-warning" : "badge-soft text-gray-500"} rounded-2xl">
                     ${issue.priority.toUpperCase()}
                   </div>
                 </div>
-                <h4 class="text-[14px] font-semibold">
+                <h4 class="text-[14px] font-semibold truncate">
                   ${issue.title}
                 </h4>
                 <p class="text-[12px] text-gray-500 line-clamp-2">
@@ -124,7 +124,7 @@ const displayIssues = (issues) => {
                 ${showLabels(issue.labels)}
                 </div>
               </div>
-              <hr class="-mx-4 border-gray-200" />
+              <hr class="-mx-3 border-gray-200" />
               <div>
                 <div class="flex justify-between">
                 <p class="text-[12px] text-gray-500">#${issue.id} by ${issue.author}</p>
@@ -174,7 +174,7 @@ const displayModal = (issue) => {
               </div>
               <div class="flex-1 space-y-1">
                 <p class="text-gray-500">Priority:</p>
-                <div class="badge ${issue.priority == "high" ? "badge-error" : issue.priority == "medium" ? "badge-warning" : "badge-soft"} rounded-2xl font-medium">
+                <div class="badge ${issue.priority == "high" ? "badge-error" : issue.priority == "medium" ? "badge-warning" : "badge-soft text-gray-500"} rounded-2xl font-medium">
                   ${issue.priority.toUpperCase()}
                 </div>
               </div>
