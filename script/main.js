@@ -9,6 +9,7 @@ const spinner = document.getElementById("spinner");
 const modal = document.getElementById("issue-details-modal");
 const modalContainer = document.getElementById("modal-container");
 const searchInput = document.getElementById("search-input");
+const main = document.querySelector("main");
 
 const showLabels = (arr) => {
   const newElements = arr.map(
@@ -41,6 +42,12 @@ const removeActiveStatus = () => {
 
 const totalCounts = () => {
   totalIssues.innerText = issueContainer.children.length;
+  if(issueContainer.children.length === 0) {
+    main.classList.add("h-screen");
+  }
+  else{
+    main.classList.remove("h-screen");
+  }
 };
 
 const showSpinner = () => {
