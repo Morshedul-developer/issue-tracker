@@ -15,7 +15,7 @@ const showLabels = (arr) => {
   const newElements = arr.map(
     (
       item,
-    ) => `<div class="badge gap-1 px-1.5 badge-soft ${item == "bug" ? "badge-error" : "badge-warning"} border ${item == "bug" ? "border-error" : "border-warning"} rounded-2xl text-[9.5px]">${item == "bug" ? '<i class="fa-solid fa-bug text-[10px]"></i>' : item == "enhancement" ? '<i class="fa-solid fa-wand-magic-sparkles"></i>' : item == "good first issue" ? '<i class="fa-solid fa-clipboard-check"></i>' : item == "documentation" ? '<i class="fa-brands fa-readme"></i>' : '<i class="fa-regular fa-life-ring text-[10px]"></i>'}${item.toUpperCase()}
+    ) => `<div class="badge gap-1 px-1.5 badge-soft ${item == "bug" ? "badge-error" : item == "enhancement" ? "badge-info" : item == "good first issue" ? "badge-success" : item == "documentation" ? "badge-primary" : "badge-warning"} border ${item == "bug" ? "border-error" : item == "enhancement" ? "border-info" : item == "good first issue" ? "border-success" : item == "documentation" ? "border-primary" :"border-warning"} rounded-2xl text-[9.5px]">${item == "bug" ? '<i class="fa-solid fa-bug text-[10px]"></i>' : item == "enhancement" ? '<i class="fa-solid fa-wand-magic-sparkles"></i>' : item == "good first issue" ? '<i class="fa-solid fa-clipboard-check"></i>' : item == "documentation" ? '<i class="fa-brands fa-readme"></i>' : '<i class="fa-regular fa-life-ring text-[10px]"></i>'}${item.toUpperCase()}
                   </div>`,
   );
   return newElements.join(" ");
