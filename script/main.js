@@ -254,9 +254,9 @@ const showCategory = (status) => {
 };
 
 document.getElementById("search-btn").addEventListener("click", () => {
-  const searchValue = searchInput.value;
+  const searchVal = searchInput.value;
   removeActiveStatus();
-  loadSearchIssues(searchValue);
+  loadSearchIssues(searchVal);
 });
 
 showCategory(currentStatus);
