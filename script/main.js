@@ -111,7 +111,7 @@ const displayIssues = (issues) => {
   issues.forEach((issue) => {
     const div = document.createElement("div");
     div.onclick = () => openModal(issue.id);
-    div.className = `space-y-3 p-3 rounded-lg shadow-md border-t-3 border-[${issue.status == "open" ? "#00A96E" : "#A855F7"}]`;
+    div.className = `space-y-3 p-3 rounded-lg shadow-md border-t-3 border-[${issue.status == "open" ? "#00A96E" : "#A855F7"}] cursor-pointer hover:shadow-lg transition-all duration-200`;
     div.innerHTML = `
               <div class="space-y-3">
                 <div class="flex justify-between items-center">
