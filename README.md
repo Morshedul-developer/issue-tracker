@@ -1,189 +1,86 @@
-# 1️⃣ What is the difference between var, let, and const?
+# GitHub Issues Tracker — Issue Management App
 
-#### Ans:<br>
+A fully functional issue tracking web application with authentication, built using HTML, Tailwind CSS, DaisyUI, and vanilla JavaScript. Features a secure login system, dynamic issue management with real-time DOM manipulation — all without any backend framework.
 
-##### In JavaScript, var, let, and const are all used to declare variables — but they behave differently in scope, reassignment, and hoisting.
+![Issue Tracker Preview](assets/preview.png)
 
-- var:<br>
-  It is functioned scoped and ignores {} blocks like if, for etc.
+🔗 **Live Demo:** [https://issue-tracker-bd-01.netlify.app/](https://issue-tracker-bd-01.netlify.app/)  
+📁 **Repository:** [github.com/Morshedul-developer/issue-tracker](https://github.com/Morshedul-developer/issue-tracker)
 
-      It also can reassigned and can be redeclared.
-      Ex:
-      var a = 5;
-      var a = 10; // This is allowed
-      a = 20;     // This is allowed
+---
 
-      It is hoisted and initialized as "undefined".
-      Ex:
-      console.log(b); // undefined
-      var b = 5;
+## ✨ Features
 
-- let:<br>
-  It is blocked-scoped.
+- Secure login system with credential validation
+- Dynamic issue creation, tracking, and management
+- Real-time DOM manipulation without any framework
+- Clean dashboard UI built with Tailwind CSS & DaisyUI
+- ES6+ JavaScript — arrow functions, template literals, spread operator
+- Multi-page application (Login + Dashboard)
+- Fully responsive across all devices
 
-      It also can reassigned and but cannot be redeclared.
-      Ex:
-      let c = 5;
-      c = 10;      // allowed
-      let c = 20;  // Error
+---
 
-      It is hoisted but not initialized. It exists in Temporal Dead Zone(TDZ).
-      Ex:
-      console.log(d); // ReferenceError
-      let d = 5;
+## 🛠️ Tech Stack
 
-- const:<br>
-  It is blocked-scoped.
+![HTML5](https://img.shields.io/badge/HTML5-E34F26?style=for-the-badge&logo=html5&logoColor=white)
+![Tailwind CSS](https://img.shields.io/badge/Tailwind_CSS-38B2AC?style=for-the-badge&logo=tailwind-css&logoColor=white)
+![DaisyUI](https://img.shields.io/badge/DaisyUI-5A0EF8?style=for-the-badge&logo=daisyui&logoColor=white)
+![JavaScript](https://img.shields.io/badge/JavaScript_ES6+-F7DF1E?style=for-the-badge&logo=javascript&logoColor=black)
 
-      It cannot be reassigned and but cannot be redeclared.
-      Ex:
-      const e = 10;
-      e = 20; // Error
+---
 
-      It is hoisted but not initialized. It exists in Temporal Dead Zone(TDZ).
-      Ex:
-      console.log(d); // ReferenceError
-      let d = 5;
+## 📁 Project Structure
 
-# 2️⃣ What is the spread operator (...)?
+```
+issue-tracker/
+├── index.html        # Login page
+├── main.html         # Dashboard page
+├── script/
+│   └── app.js
+├── assets/
+│   └── (images & icons)
+└── README.md
+```
 
-#### Ans:<br>
+---
 
-##### Spread operator (...) is used to expand elements of an array or properties of an object into individual elements.
+## 🔐 Demo Credentials
 
-- It expands the elements of an array.<br>
-  Ex:<br>
-  const numbers = [1, 2, 3];<br>
-  console.log(...numbers); // 1 2 3<br>
+```
+Username: admin
+Password: admin123
+```
 
-- Spread operator can create a shallow copy.<br>
-  Ex:<br>
-  const arr1 = [1, 2, 3];<br>
-  const arr2 = [...arr1];<br>
-  console.log(arr2); // [1, 2, 3]<br>
+---
 
-- Spread operator is also used to copy or merge objects.<br>
-  Ex:<br>
-  const user = {
-  name: "John",
-  age: 25
-  };
+## 🚀 Run Locally
 
-  const newUser = {
-  ...user,
-  country: "USA"
-  };
+```bash
+# Clone the repository
+git clone https://github.com/Morshedul-developer/issue-tracker.git
 
-  console.log(newUser); // { name: "John", age: 25, country: "USA" }
+# Open in browser
+cd issue-tracker
+open index.html
+```
 
-# 3️⃣ What is the difference between map(), filter(), and forEach()?
+---
 
-#### Ans:<br>
+## 📸 Sections
 
-##### map(), filter(), and forEach() each of the methods are JS array methods used to loop through arrays.
+- **Login Page** — Credential validation with GitHub-themed UI
+- **Dashboard** — Issue listing, creation, and management
+- **Issue Cards** — Dynamic rendering with DaisyUI components
 
-- map():<br>
-  This method is used to transform each element of an array. We should remind that this method return a new array.<br>
-  Ex:<br>
-  const numbers = [1, 2, 3];
+---
 
-  const result = numbers.map(num => num \* 2);<br>
-  console.log(result); // [2, 4, 6]
+## 📬 Contact
 
-- filter():<br>
-  This method is used to get elements based on a condition from an array. It also return a new array like map() method.
+**Morshedul Islam**
+- Portfolio: [morshedul-khaer.netlify.app](https://morshedul-khaer.netlify.app)
+- GitHub: [@Morshedul-developer](https://github.com/Morshedul-developer)
 
-  Ex:<br>
-  const numbers = [1, 2, 3, 4, 5];
+---
 
-  const result = numbers.filter(num => num > 3);<br>
-  console.log(result); // [4, 5]
-
-- forEach():<br>
-  This method is only used for runs code for each element and it does not return a new array.
-
-  Ex:<br>
-  const numbers = [1, 2, 3];
-
-  numbers.forEach(num => {
-  console.log(num \* 2);
-  }); // 2 4 6
-
-# 4️⃣ What is an arrow function?
-
-#### Ans:<br>
-
-##### Arrow function: An arrow function is a shorter and more modern way to write functions in JS. This is a modern JavaScript feature (introduced in ES6).
-
-It uses the '=>'(arrow) syntax.
-
-Normal Function:<br>
-function add(a, b) {<br>
-return a + b;<br>
-}
-
-Arrow Function:<br>
-const add = (a, b) => {<br>
-return a + b;<br>
-};
-
-### There are many ways to write an arrow function, like:<br>
-
-- Shorter Arrow Function
-
-  const add = (a, b) => a + b;
-
-- ExArrow Function with One Parameter
-
-  const square = num => num \* num; // Here, the parentheses are optional.
-
-- Arrow Function with No Parameter
-
-  Use empty parentheses.
-
-  const greet = () => {<br>
-  console.log("Hello");<br>
-  };
-
-# 5️⃣ What are template literals?
-
-#### Ans:<br>
-
-##### Template literals: This is a modern JavaScript feature (introduced in ES6) used to create strings more easily using backticks(``) instead of quotes.
-
-### The uses of Template literals:
-
-- String Interpolation (Very Important)
-
-  Before template literals:
-
-  const name = "John";<br>
-  const age = 25;
-
-  const text = "My name is " + name + " and I am " + age;
-
-  With template literals:
-
-  const text = `My name is ${name} and I am ${age}`;
-
-- Using Expressions
-
-  const a = 5;
-  const b = 10;
-
-  console.log(`Sum is ${a + b}`); // Sum is 15
-
-- Multi-line Strings
-
-  Template literals allow multi-line text without \n.
-
-  const text = `This is line one
-This is line two
-This is line three`;
-
-  console.log(text);
-
-  Output:<br>
-  This is line one<br>
-  This is line two<br>
-  This is line three
+> *"A production-ready issue tracker — built with zero backend, zero framework, just pure JavaScript logic."*
